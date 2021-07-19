@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'new.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello {{user.f_name}}! Create a trip!</h1>
+    <a href="/" class="logout">Log out</a>
+    <hr>
+    {% if messages %}
+    <ul class="messages">
+            {% for message in messages %}
+                <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+
+    <form action="/trip/create" method="POST">
+        {% csrf_token %}
+        <div>
+            <label for="destination">Destination</label><br>
+            <input type="text" name="destination" id="destination" placeholder="Destination"
+                value="{{ trip.destination }}"><br>
+            <label for="start_date">Start Date</label><br>
+            <input type="date" id="start_date" name="start_date" placeholder="Start Date"
+                value="{{ trip.start_date }}"><br>
+            <label for="end_date">End Date</label><br>
+            <input type="date" id="end_date" name="end_date" placeholder="End Date" value="{{ trip.end_date }}"><br>
+            <label for="plan" class="planlabel">Plan</label><br>
+            <textarea class="plan" rows="9" cols="145" name="plan" placeholder="Plan"
+                value="{{ trip.plan }}"></textarea><br>
+            <div class="buttons">
+                <a href="/dashboard" class="cancel">Cancel</a>
+                <input class="submit" type="submit" value="Submit">
+            </div>
+        </div>
+    </form>
+</body>
+</html>

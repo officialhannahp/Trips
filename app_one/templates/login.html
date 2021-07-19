@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'login.css' %}">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div class="reg">
+        <h1>Registration</h1>
+        <form class="form" action="/register" method="POST">
+            {% csrf_token %}
+
+            <input class="loginbox" type="text" name="f_name" id="f_name" placeholder="  First Name"><br>
+            <input class="loginbox" type="text" name="l_name" id="l_name" placeholder="  Last Name"><br>
+            <input class="loginbox" type="email" id="email" name="email" placeholder="  Email"><br>
+            <input class="loginbox" type="password" name="pw" id="pw" placeholder="  Password"><br>
+            <input class="loginbox" type="password" name="confirm_pw" id="confirm_pw" placeholder="  Confirm PW"><br>
+            <input class="regbutton" type="submit" value="Register">
+
+        </form>
+    </div>
+
+        {% if messages %}
+        <ul  class="msg">
+            {% for message in messages %}
+            <li>
+                {{ message }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+    <div class="login">
+        <h1>Login</h1>
+        <form action="/login" method="POST">
+            {% csrf_token %}
+
+            <input class="loginbox" type="email" id="email" name="email" placeholder="  Email"><br>
+            <input class="loginbox" type="password" id="pw" name="pw" placeholder="  Password"><br>
+            <input class="loginbutton" type="submit" value="Log In"><br>
+        </form>
+    </div>
+</body>
+</html>

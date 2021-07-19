@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'dashboard.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello {{ user.f_name }}!</h1>
+    <a href="/logout" class="logout">Log Out</a>
+    <a href="/new" class="createnew">Create a new trip!</a>
+    <hr>
+    <div class="box">
+        <h2>Your Trips</h2>
+        <table>
+            <tr>
+                <th>Destination</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Plan</th>
+                <th>Actions</th>
+            </tr>
+            {% for trip in new_trip.all %}
+            {% if trip.user == user %}
+            <tr>
+                <td>
+                    <a href="/trips/{{trip.id}}">{{ trip.destination }}</a>
+                </td>
+                <td>{{ trip.start_date }}</td>
+                <td>{{ trip.end_date }}</td>
+                <td>{{ trip.plan }}</td>
+                <td>
+                    <a href="/trips/destroy/{{trip.id}}">Remove</a>
+                    <a href="/trips/edit/{{trip.id}}">Edit</a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </div>
+</body>
+</html>
+
+

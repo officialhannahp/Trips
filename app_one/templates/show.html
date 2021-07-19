@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'show.css' %}">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <h1>Hello {{ user.f_name }}! Read about this trip!</h1>
+    <a href="/dashboard" class="dashboard">Dashboard</a>
+    <a href="/" class="logout">Log Out</a>
+    <hr>
+
+    <p class="des">{{ trip.destination }}</p>
+
+    <div class="box">
+        <p>Start Date:
+        <p class="info">{{ trip.start_date }}</p>
+        </p>
+        <p>End Date:
+        <p class="info">{{ trip.end_date }}</p>
+        </p>
+        <p>Created On:
+        <p class="info">{{ trip.created_at }}</p>
+        </p>
+        <p>Last Updated:
+        <p class="info">{{ trip.updated_at }}</p>
+        </p>
+        <p>Plan:
+        <p class="info">{{ trip.plan }}</p>
+        </p>
+        <p>Created by:
+        <p class="info">{{ user.f_name }}</p>
+        </p>
+    </div><br>
+    <div class="buttons">
+
+    </div>
+</body>
+</html>
